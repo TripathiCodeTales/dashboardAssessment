@@ -7,14 +7,14 @@ import WidgetCard from '../Primitives/WidgetCard.js';
 import TopBar from '../Components/TopBar.js';
 import AppContext from '../Context/AppContext';
 
-const Dashboard = ({ handleOnChange, detail }) => {
+const Dashboard = () => {
 	const theme = useTheme();
-	const { categories } = useContext(AppContext);
+	const { categories, setSelectedCategoryIndex } = useContext(AppContext);
 
 	return (
 		<Box sx={{ backgroundColor: theme.palette.background.paper }}>
 			<TopBar />
-			{categories.map((category) => {
+			{categories.map((category, index) => {
 				return (
 					<>
 						<p className='small-head-crd'>{category.name}</p>
@@ -28,21 +28,20 @@ const Dashboard = ({ handleOnChange, detail }) => {
 							}}
 						>
 							{category.widgets.map((widget) => {
-								return (
-									<Box sx={{ width: '32%' }}>
-										<WidgetCard
-											data={widget.detail}
-											Header={widget.name}
-											noContent={!widget?.detail && 'No Graph Data Available'}
-										/>
-									</Box>
-								);
+								if (widget.isSelected) {
+									return (
+										<Box sx={{ width: '32%' }}>
+											<WidgetCard
+												data={widget.detail}
+												Header={widget.name}
+												noContent={!widget?.detail && 'No Graph Data Available'}
+											/>
+										</Box>
+									);
+								}
 							})}
 							<Box sx={{ width: '32%', height: '100px' }}>
-								<AddWidget
-									detail={detail.CSPM}
-									handleOnChange={handleOnChange}
-								/>
+								<AddWidget handleOnChange={() => setSelectedCategoryIndex(index)} />
 							</Box>
 						</Box>
 					</>

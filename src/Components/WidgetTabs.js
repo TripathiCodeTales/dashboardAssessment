@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 import { Box, Button, styled, Tab } from '@mui/material';
+import AppContext from '../Context/AppContext';
 
 import WidgetsList from './WidgetsList';
 
-const WidgetTabs = ({ onClose, handleOnChange, detail }) => {
+const WidgetTabs = ({ onClose }) => {
+	const [selectedTab, setSelectedTab] = useState();
+	const { categories, selectedCategoryIndex, setSelectedCategoryIndex } = useContext(AppContext);
+	const theme = useTheme();
+
+	useEffect(() => {
+		setSelectedTab(selectedCategoryIndex + 1);
+	}, [selectedCategoryIndex]);
+
 	const handleChange = (event, newValue) => {
 		setSelectedTab(newValue);
+		setSelectedCategoryIndex(newValue - 1);
 	};
 	const handleOnClick = () => {
 		onClose();
 	};
-
-	const handleCheckboxChange = (event, widgetName) => {
-		handleOnChange(event, widgetName);
-	};
-
-	console.log('datils are : ' + detail);
-
-	const tabs = ['CSPM', 'CWPP', 'Image', 'Ticket'];
-	const [selectedTab, setSelectedTab] = useState(1);
-
-	const theme = useTheme();
 
 	const CustomButton = styled(Button)({
 		borderColor: theme.palette.background.secondary,
@@ -44,30 +43,22 @@ const WidgetTabs = ({ onClose, handleOnChange, detail }) => {
 			>
 				<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 					<TabList onChange={handleChange}>
-						{tabs.map((tab, index) => (
+						{categories.map((category, index) => (
 							<Tab
-								label={tab}
+								label={category.abbr}
 								value={index + 1}
 							/>
 						))}
 					</TabList>
 				</Box>
 				<div style={{ height: '72vh' }}>
-					<TabPanel
-						value={1}
-						sx={{ backgroundColor: theme.palette.background.default }}
-					>
-						<WidgetsList detail={detail} />
-					</TabPanel>
-					<TabPanel value={2}>
-						<WidgetsList detail={detail} />
-					</TabPanel>
-					<TabPanel value={3}>
-						<WidgetsList detail={detail} />
-					</TabPanel>
-					<TabPanel value={4}>
-						<WidgetsList detail={detail} />
-					</TabPanel>
+					{categories.map((Category, index) => {
+						return (
+							<TabPanel value={index + 1}>
+								<WidgetsList widgets={Category.widgets} />
+							</TabPanel>
+						);
+					})}
 				</div>
 			</TabContext>
 			<div style={{ textAlign: 'right' }}>

@@ -4,7 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { AppBar, Box, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
 import WidgetTabs from '../Components/WidgetTabs.js';
 
-const AddWidgetDrawer = ({ isTrue, onClose, handleOnChange, detail }) => {
+const AddWidgetDrawer = ({ isTrue, onClose, handleOnChange }) => {
 	const handleOnClose = () => {
 		onClose();
 	};
@@ -46,11 +46,7 @@ const AddWidgetDrawer = ({ isTrue, onClose, handleOnChange, detail }) => {
 							</Toolbar>
 						</AppBar>
 						<p className='paddingminor'>Personalise the dashboard by adding the following widget</p>
-						<WidgetTabs
-							onClose={handleOnClose}
-							handleOnChange={handleOnChange}
-							detail={detail}
-						/>
+						<WidgetTabs onClose={handleOnClose} />
 					</Box>
 				</Box>
 			</Drawer>

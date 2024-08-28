@@ -4,12 +4,13 @@ import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddWidgetDrawer from './AddWidgetDrawer';
 
-const AddWidget = ({ detail, handleOnChange }) => {
+const AddWidget = ({ handleOnChange }) => {
 	const [drawer, setDrawer] = useState(false);
 	const theme = useTheme();
 
 	const handleOnClick = () => {
 		setDrawer(true);
+		handleOnChange();
 	};
 
 	const handleCloseDrawer = () => {
@@ -54,7 +55,6 @@ const AddWidget = ({ detail, handleOnChange }) => {
 				isTrue={drawer}
 				onClose={handleCloseDrawer}
 				handleOnChange={handleOnChange}
-				detail={detail}
 			/>
 		</Card>
 	);

@@ -23,7 +23,7 @@ const Header = () => {
 					justifyContent: 'space-between',
 				}}
 			>
-				{/* <Breadcrumbs aria-label='breadcrumb'>
+				<Breadcrumbs aria-label='breadcrumb'>
 					<Link
 						underline='hover'
 						color={theme.palette.secondary.main}
@@ -31,7 +31,7 @@ const Header = () => {
 						home
 					</Link>
 					<Typography>dashboard</Typography>
-				</Breadcrumbs> */}
+				</Breadcrumbs>
 				<Search>
 					<SearchIconWrapper>
 						<SearchIcon />

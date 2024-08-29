@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+
 import AddWidgetDrawer from './AddWidgetDrawer';
 
 const AddWidget = ({ handleOnChange }) => {
@@ -21,11 +22,10 @@ const AddWidget = ({ handleOnChange }) => {
 		<Card
 			sx={{
 				backgroundColor: theme.palette.background.default,
-				m: 1,
 				borderRadius: 3,
 				flex: 1,
 				width: '100%',
-				height: 210,
+				height: 206,
 			}}
 		>
 			<Box

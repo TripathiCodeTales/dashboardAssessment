@@ -12,7 +12,7 @@ const Dashboard = () => {
 	const { categories, setSelectedCategoryIndex } = useContext(AppContext);
 
 	return (
-		<Box sx={{ backgroundColor: theme.palette.background.paper }}>
+		<Box sx={{ backgroundColor: theme.palette.background.paper, padding: '2rem' }}>
 			<TopBar />
 			{categories.map((category, index) => {
 				return (
@@ -21,16 +21,16 @@ const Dashboard = () => {
 						<Box
 							sx={{
 								display: 'flex',
-								flexDirection: 'row',
-								width: '100%',
-								gap: 1.5,
-								marginLeft: 3.5,
+								flexWrap: 'wrap',
+								marginTop: '1rem',
+								marginBottom: '3rem',
+								gap: '2rem',
 							}}
 						>
 							{category.widgets.map((widget) => {
 								if (widget.isSelected) {
 									return (
-										<Box sx={{ width: '32%' }}>
+										<Box>
 											<WidgetCard
 												data={widget.detail}
 												Header={widget.name}
@@ -40,7 +40,7 @@ const Dashboard = () => {
 									);
 								}
 							})}
-							<Box sx={{ width: '32%', height: '100px' }}>
+							<Box sx={{ minWidth: '350px' }}>
 								<AddWidget handleOnChange={() => setSelectedCategoryIndex(index)} />
 							</Box>
 						</Box>

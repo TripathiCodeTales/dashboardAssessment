@@ -12,13 +12,13 @@ const TopBar = () => {
 
 	const theme = useTheme();
 
-    const handleChange = () => {}
+	const handleChange = () => {};
 
 	return (
 		<Box
-			sx={{ paddingTop: 5 }}
 			display='flex'
-			justifyContent={'space-between'}
+			justifyContent='space-between'
+			flexWrap='wrap'
 		>
 			<div className='small-head'>CNAPP dashboard</div>
 			<div className='sideHeader'>
@@ -47,18 +47,19 @@ const TopBar = () => {
 						<MoreVert />
 					</Button>
 				</div>
-				<div className='sideHeader-item'>
-					<SvgIcon sx={{ backgroundColor: theme.palette.background.default }}>
+				<div className='SideHeader-item-container'>
+				<div className='sideHeader-item clock'>
+					<SvgIcon sx={{ backgroundColor: theme.palette.background.default,fontSize: 'larger' }}>
 						<AccessTimeFilledOutlinedIcon />
 					</SvgIcon>
 				</div>
-				<div className='sideHeader-item'>
+				<div className='sideHeader-item day'>
 					<Select
 						labelId='demo-simple-select-label'
 						id='demo-simple-select'
 						defaultValue={2}
 						variant='outlined'
-						sx={{ backgroundColor: theme.palette.background.default }}
+						sx={{ backgroundColor: theme.palette.background.default,borderColor:theme.palette.background.secondary,borderStyle:2 }}
 						onChange={handleChange}
 					>
 						{daysArr.map((day) => {
@@ -66,6 +67,8 @@ const TopBar = () => {
 						})}
 					</Select>
 				</div>
+				</div>
+				
 			</div>
 		</Box>
 	);

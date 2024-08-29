@@ -7,7 +7,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 const Header = () => {
-    const theme = useTheme();
+	const theme = useTheme();
 
 	return (
 		<div>
@@ -15,9 +15,15 @@ const Header = () => {
 				direction='row'
 				sx={{ minWidth: 0 }}
 				spacing={{ xs: 10, sm: 10, md: 40 }}
-				style={{ backgroundColor: theme.palette.background.default, padding: '10px' }}
+				style={{
+					backgroundColor: theme.palette.background.default,
+					padding: '1rem 2rem',
+					display: 'flex',
+					// flexWrap: 'wrap',
+					justifyContent: 'space-between',
+				}}
 			>
-				<Breadcrumbs aria-label='breadcrumb'>
+				{/* <Breadcrumbs aria-label='breadcrumb'>
 					<Link
 						underline='hover'
 						color={theme.palette.secondary.main}
@@ -25,7 +31,7 @@ const Header = () => {
 						home
 					</Link>
 					<Typography>dashboard</Typography>
-				</Breadcrumbs>
+				</Breadcrumbs> */}
 				<Search>
 					<SearchIconWrapper>
 						<SearchIcon />

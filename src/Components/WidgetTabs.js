@@ -2,13 +2,14 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { TabPanel, TabList, TabContext } from '@mui/lab';
 import { Box, Button, styled, Tab } from '@mui/material';
-import AppContext from '../Context/AppContext';
 
 import WidgetsList from './WidgetsList';
+import AppContext from '../Context/AppContext';
 
 const WidgetTabs = ({ onClose }) => {
 	const [selectedTab, setSelectedTab] = useState();
-	const { categories, selectedCategoryIndex, setSelectedCategoryIndex } = useContext(AppContext);
+	const { tempUpdatedCategory, selectedCategoryIndex, setSelectedCategoryIndex, handleUpdateWidgets } =
+		useContext(AppContext);
 	const theme = useTheme();
 
 	useEffect(() => {
@@ -20,6 +21,11 @@ const WidgetTabs = ({ onClose }) => {
 		setSelectedCategoryIndex(newValue - 1);
 	};
 	const handleOnClick = () => {
+		onClose();
+	};
+
+	const handleSubmit = () => {
+		handleUpdateWidgets();
 		onClose();
 	};
 
@@ -36,14 +42,14 @@ const WidgetTabs = ({ onClose }) => {
 	});
 
 	return (
-		<Box sx={{ width: '100%', typography: 'body1', backgroundColor: theme.palette.background.default }}>
+		<Box sx={{ width: '100%', height: '100%', typography: 'body1', backgroundColor: theme.palette.background.default }}>
 			<TabContext
 				value={selectedTab}
-				sx={{ width: '100%', backgroundColor: theme.palette.background.default }}
+				sx={{ width: '100%', height: '100%', backgroundColor: theme.palette.background.default }}
 			>
 				<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 					<TabList onChange={handleChange}>
-						{categories.map((category, index) => (
+						{tempUpdatedCategory.map((category, index) => (
 							<Tab
 								label={category.abbr}
 								value={index + 1}
@@ -51,8 +57,8 @@ const WidgetTabs = ({ onClose }) => {
 						))}
 					</TabList>
 				</Box>
-				<div style={{ height: '72vh' }}>
-					{categories.map((Category, index) => {
+				<div style={{ height: '75%' }}>
+					{tempUpdatedCategory.map((Category, index) => {
 						return (
 							<TabPanel value={index + 1}>
 								<WidgetsList widgets={Category.widgets} />
@@ -61,15 +67,16 @@ const WidgetTabs = ({ onClose }) => {
 					})}
 				</div>
 			</TabContext>
-			<div style={{ textAlign: 'right' }}>
+			<div style={{ textAlign: 'right', paddingRight: '2rem' }}>
 				<CustomButton
 					variant='outlined'
 					sx={{ borderRadius: 2 }}
+					onClick={handleOnClick}
 				>
-					Confirm
+					Cancel
 				</CustomButton>
 				<Button
-					onClick={handleOnClick}
+					onClick={handleSubmit}
 					variant='contained'
 					sx={{
 						borderRadius: 2,
@@ -83,7 +90,7 @@ const WidgetTabs = ({ onClose }) => {
 						},
 					}}
 				>
-					cancel
+					Confirm
 				</Button>
 			</div>
 		</Box>

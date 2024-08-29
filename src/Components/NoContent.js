@@ -17,7 +17,6 @@ const NoContent = ({ noContent }) => {
 		>
 			<Box
 				sx={{
-					width: 350,
 					height: 120,
 					display: 'flex',
 					alignItems: 'center',

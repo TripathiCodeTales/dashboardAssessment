@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Card, Checkbox, Stack } from '@mui/material';
+
 import AppContext from '../Context/AppContext';
 
 const WidgetsList = ({ widgets }) => {
 	const theme = useTheme();
-	const { updateWidget } = useContext(AppContext);
+	const { updateTempWidget } = useContext(AppContext);
 
 	const handleClicked = (selectedWidgetIndex) => {
-		updateWidget(selectedWidgetIndex);
+		updateTempWidget(selectedWidgetIndex);
 	};
 
 	return (
@@ -21,6 +22,7 @@ const WidgetsList = ({ widgets }) => {
 					<Card
 						sx={{ borderColor: theme.palette.secondary.default }}
 						className='paddingminor panel'
+						key={index}
 					>
 						<span>
 							<Checkbox

@@ -5,9 +5,10 @@ import { styled } from '@mui/material/styles';
 import { PieChart } from '@mui/x-charts/PieChart';
 
 const size = {
-	width: 400,
+	width: 325,
 	height: 150,
 };
+
 const PieCharts = ({ data }) => {
 	const theme = useTheme();
 	return (
@@ -15,7 +16,7 @@ const PieCharts = ({ data }) => {
 			series={[
 				{
 					data: data,
-					innerRadius: 48,
+					innerRadius: 50,
 				},
 			]}
 			{...size}

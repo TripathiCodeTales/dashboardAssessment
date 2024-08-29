@@ -2,14 +2,15 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import ClearIcon from '@mui/icons-material/Clear';
 import { AppBar, Box, Drawer, IconButton, Toolbar, Typography } from '@mui/material';
+
 import WidgetTabs from '../Components/WidgetTabs.js';
 
 const AddWidgetDrawer = ({ isTrue, onClose, handleOnChange }) => {
+	const theme = useTheme();
+
 	const handleOnClose = () => {
 		onClose();
 	};
-
-	const theme = useTheme();
 
 	return (
 		<div>
@@ -19,10 +20,10 @@ const AddWidgetDrawer = ({ isTrue, onClose, handleOnChange }) => {
 				anchor='right'
 			>
 				<Box
-					sx={{ width: 550 }}
+					sx={{ width: '100%', height: '100%' }}
 					role='presentation'
 				>
-					<Box sx={{ flexGrow: 1, backgroundColor: theme.palette.background.default }}>
+					<Box sx={{ flexGrow: 1, backgroundColor: theme.palette.background.default, height: '100%' }}>
 						<AppBar position='static'>
 							<Toolbar style={{ backgroundColor: theme.palette.background.secondary, padding: 0 }}>
 								<Typography

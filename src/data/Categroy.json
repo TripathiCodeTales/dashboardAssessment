@@ -62,7 +62,7 @@
 		"abbr": "CWPP",
 		"widgets": [
 			{ "name": "Top 5 Namespace Specific Alerts", "isSelected": true },
-			{ "name": "Workload Headers", "isSelected": false },
+			{ "name": "Workload Headers", "isSelected": true },
 			{ "name": "Workload payload", "isSelected": false }
 		]
 	},
